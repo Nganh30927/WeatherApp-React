@@ -8,6 +8,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import moment from 'moment';
 
 
 interface WeatherAppProps {
@@ -70,9 +71,8 @@ const WeatherApp = () => {
     })
   console.log(data)
   const formatDateTime = (time_epoch: number) => {
-    const currentDate = new Date();
-    const targetDate = new Date(currentDate.getTime() + time_epoch * 1000);
-    return targetDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const targetDate = moment.unix(time_epoch);
+    return targetDate.format('hh:mm A');
   };
   return (
     <>
